@@ -4,11 +4,12 @@ import api from "../api";
 
 const Users = () => {
     const [users, setUsers] = useState(api.users.fetchAll());
-    let [count, setCount] = useState(api.users.fetchAll().length);
+    const [count, setCount] = useState(api.users.fetchAll().length);
 
-    const deleteUser = () => {
+    const handleDelete = (_id) => {
+        const newUsers = users.filter((user) => user._id !== _id);
+        setUsers(newUsers);
         setCount(count - 1);
-        users.shift();
     };
 
     const renderUsers = () => {
@@ -50,7 +51,7 @@ const Users = () => {
                                     <button
                                         type="button"
                                         className="btn btn-danger"
-                                        onClick={deleteUser}
+                                        onClick={() => handleDelete(user._id)}
                                     >
                                         delete
                                     </button>
