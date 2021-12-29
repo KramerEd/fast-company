@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SearchStatus from "./components/searchStatus";
+import api from "./api/index";
 
+import Users from "./components/users";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [users, setUsers] = useState(api.users.fetchAll());
+
+    const handleDelete = (_id) => {
+        const newUsers = users.filter((user) => user._id !== _id);
+        setUsers(newUsers);
+    };
+    const handleToggleBookmark = (_id) => {
+        const newUsers = users.map((user) => {
+            if (user._id === _id) {
+                user.bookmark = !user.bookmark;
+            }
+            return user;
+        });
+        setUsers(newUsers);
+    };
+
+    return users.length ? (
+        <>
+            <SearchStatus length={users.length} />
+            <Users
+                users={users}
+                onDelete={handleDelete}
+                onBookmark={handleToggleBookmark}
+            />
+        </>
+    ) : (
+        <SearchStatus length={users.length} />
+    );
 }
 
 export default App;
