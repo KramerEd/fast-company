@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 const Bookmark = (props) => {
     if (!props.bookmark) {
         return (
@@ -33,5 +33,7 @@ const Bookmark = (props) => {
         );
     }
 };
+
+
 
 export default Bookmark;
