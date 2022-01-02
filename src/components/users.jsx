@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import User from "./user";
 import Pagination from "./pagination";
 import { paginate } from "../utils/paginate";
+import PropTypes from "prop-types";
 
 const Users = (props) => {
     const count = props.users.length;
@@ -46,5 +47,9 @@ const Users = (props) => {
         </>
     );
 };
-
+Users.propTypes = {
+    users: PropTypes.array.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onBookmark: PropTypes.func.isRequired
+};
 export default Users;

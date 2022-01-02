@@ -1,3 +1,4 @@
+import React from "react";
 const searchStatus = ({ length }) => {
     if (length <= 0) {
         return (

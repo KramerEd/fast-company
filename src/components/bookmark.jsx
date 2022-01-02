@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 const Bookmark = (props) => {
     if (!props.bookmark) {
         return (
@@ -33,5 +33,8 @@ const Bookmark = (props) => {
         );
     }
 };
-
+Bookmark.propTypes = {
+    bookmark: PropTypes.bool.isRequired,
+    handleToggleBookmark: PropTypes.func.isRequired
+};
 export default Bookmark;
