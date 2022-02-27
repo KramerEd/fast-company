@@ -33,8 +33,10 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/login" component={Login} />
-                <Route path="/login/:isAdmin" component={Login} />
-
+                <Route
+                    path="/users/:userId"
+                    render={(props) => <User users={users} {...props} />}
+                />
                 <Route
                     path="/users"
                     render={(props) => (
@@ -45,10 +47,6 @@ function App() {
                             {...props}
                         />
                     )}
-                />
-                <Route
-                    path="/user"
-                    render={(props) => <User users={users} {...props} />}
                 />
             </Switch>
         </>

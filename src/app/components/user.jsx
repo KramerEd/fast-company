@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import API from "../api";
 import PropTypes from "prop-types";
 const User = ({ match }) => {
-    const params = match.params;
-    console.log(params);
+    const params = match.params.userId;
     const [user, setUser] = useState();
     useEffect(() => {
-        API.users.default.getById("67rdca3eeb7f6fgeed471815").then((data) => {
+        API.users.default.getById(params).then((data) => {
             setUser(data);
         });
     });
